@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Input Form</title>
+</head>
+<body>
+    <h1>Real-Time Input for Prediction</h1>
+    <form id="predictionForm">
+        <label for="feature_1">X acceleration(1):</label>
+        <input type="number" step="any" id="feature_1" name="feature_1" required><br><br>
+
+        <label for="feature_2">Y acceleration(1):</label>
+        <input type="number" step="any" id="feature_2" name="feature_2" required><br><br>
+
+        <label for="feature_3">Z acceleration(1):</label>
+        <input type="number" step="any" id="feature_3" name="feature_3" required><br><br>
+
+        <label for="feature_4">Temperature(1):</label>
+        <input type="number" step="any" id="feature_4" name="feature_4" required><br><br>
+
+        <label for="feature_5">X acceleration(2):</label>
+        <input type="number" step="any" id="feature_5" name="feature_5" required><br><br>
+
+        <label for="feature_6">Y acceleration(2):</label>
+        <input type="number" step="any" id="feature_6" name="feature_6" required><br><br>
+
+        <label for="feature_7">Z acceleration(2):</label>
+        <input type="number" step="any" id="feature_7" name="feature_7" required><br><br>
+
+        <label for="feature_8">Temperature(2):</label>
+        <input type="number" step="any" id="feature_8" name="feature_8" required><br><br>
+
+        <button type="submit">Predict</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('predictionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                let resultDiv = document.getElementById('result');
+                if (data.error) {
+                    resultDiv.textContent = `Error: ${data.error}`;
+                } else {
+                    resultDiv.textContent = `Predicted Class: ${data.class}, Probability: ${data.probability}`;
+                    if (data.error_signal) {
+                        resultDiv.textContent += `, Error Signal: ${data.error_signal}`;
+                    }
+                }
+            })
+            .catch(error => {
+                document.getElementById('result').textContent = `Error: ${error.message}`;
+            });
+        });
+    </script>
+</body>
+</html>
