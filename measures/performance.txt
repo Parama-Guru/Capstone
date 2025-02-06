@@ -1,0 +1,10 @@
+Cross-Validation Results:
+Params: {'max_depth': None, 'n_estimators': 100}, Mean Accuracy: 0.9666, Std Dev: 0.0097
+Params: {'max_depth': None, 'n_estimators': 200}, Mean Accuracy: 0.9660, Std Dev: 0.0104
+Params: {'max_depth': None, 'n_estimators': 300}, Mean Accuracy: 0.9663, Std Dev: 0.0105
+Params: {'max_depth': 10, 'n_estimators': 100}, Mean Accuracy: 0.9545, Std Dev: 0.0063
+Params: {'max_depth': 10, 'n_estimators': 200}, Mean Accuracy: 0.9543, Std Dev: 0.0072
+Params: {'max_depth': 10, 'n_estimators': 300}, Mean Accuracy: 0.9548, Std Dev: 0.0075
+Params: {'max_depth': 20, 'n_estimators': 100}, Mean Accuracy: 0.9658, Std Dev: 0.0089
+Params: {'max_depth': 20, 'n_estimators': 200}, Mean Accuracy: 0.9655, Std Dev: 0.0092
+Params: {'max_depth': 20, 'n_estimators': 300}, Mean Accuracy: 0.9659, Std Dev: 0.0094
